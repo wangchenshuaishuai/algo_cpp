@@ -14,17 +14,20 @@ void printCompileTime(){
 
 int main(int argc, char* argv[]){
     printCompileTime();
-    int *arr = SortTestHelp::generateRandomArray(8, 16, 998);
-    printall(arr, 8);
-    SelectionSort<int>(arr, 8);
-    // quicksort(arr, 0, 7);
-    printarr(arr, 8);
+    int *arr = SortTestHelper::generateRandomArray(100000, 16, 998);
+    // printall(arr, 8);
+    // SelectionSort<int>(arr, 8);
+    // // quicksort(arr, 0, 7);
+    // printarr(arr, 8);
 
-    std::string barr[] = {"a", "x","c","f"};
-    printall(barr, 4);
-    SelectionSort(barr, 4);
-    printall(barr, 4);
+    // std::string barr[] = {"a", "x","c","f"};
+    // printall(barr, 4);
+    // SelectionSort(barr, 4);
+    // printall(barr, 4)s;
 
-    delete arr;
+    SortTestHelper::testSort("selection sort", SelectionSort, arr, 100000);
+    delete[] arr;
+
+    // delete arr;
     return 1;
 }
