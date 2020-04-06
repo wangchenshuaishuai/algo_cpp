@@ -6,11 +6,11 @@ LFLAGS = -Wall
 all: $(OBJS)
 	$(CC) $(LFLAGS) $(OBJS) -o out
 
-main.o: main.cpp printarr.h quicksort.h printall.h SortTestingHelper.h SelectionSort.h
+main.o: main.cpp quicksort.h printall.h SortTestingHelper.h SelectionSort.h insertionSort.h
 	$(CC) $(CFLAGS) main.cpp
 
-printarr.o: printarr.cpp printarr.h
-	$(CC) $(CFLAGS) printarr.cpp
+# printarr.o: printarr.cpp printarr.h
+# 	$(CC) $(CFLAGS) printarr.cpp
 
 # SelectionSort.o: SelectionSort.cpp SelectionSort.h
 # 	$(CC) $(CFLAGS) SelectionSort.cpp

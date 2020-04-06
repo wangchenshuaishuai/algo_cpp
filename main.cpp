@@ -1,10 +1,12 @@
 #include <iostream>
-#include "printarr.h"
-#include "printall.h"
+// #include "printarr.h"
+// #include "printall.h"
 #include "SortTestingHelper.h"
 
 #include "quicksort.h"
 #include "SelectionSort.h"
+#include "insertionSort.h"
+#include "bubbleSort.h"
 
 using std::cout;
 
@@ -14,19 +16,30 @@ void printCompileTime(){
 
 int main(int argc, char* argv[]){
     printCompileTime();
-    int *arr = SortTestHelper::generateRandomArray(100000, 16, 998);
-    // printall(arr, 8);
-    // SelectionSort<int>(arr, 8);
-    // // quicksort(arr, 0, 7);
-    // printarr(arr, 8);
+    const int n = 150001;
+    // int *arr1 = SortTestHelper::generateRandomArray(n, 1, n);
+    int *arr[6];
+    int i=0;
+    // arr[i++] = SortTestHelper::generateRandomArray(n, 1, n);
+    arr[i++] = SortTestHelper::generateNearlyOrderedArray(n, 10);
+    arr[i++] = SortTestHelper::copyArray<int>(arr[0], n);
+    arr[i++] = SortTestHelper::copyArray<int>(arr[0], n);
+    arr[i++] = SortTestHelper::copyArray<int>(arr[0], n);
+    arr[i++] = SortTestHelper::copyArray<int>(arr[0], n);
+    arr[i++] = SortTestHelper::copyArray<int>(arr[0], n);
 
-    // std::string barr[] = {"a", "x","c","f"};
-    // printall(barr, 4);
-    // SelectionSort(barr, 4);
-    // printall(barr, 4)s;
-
-    SortTestHelper::testSort("selection sort", SelectionSort, arr, 100000);
-    delete[] arr;
+    int j=0;
+    // SortTestHelper::printArray(arr[j], n);
+    SortTestHelper::testSort("selection sort", selectionSort, arr[j++], n);
+    SortTestHelper::testSort("selection sort1", selectionSortImprove1, arr[j++], n);
+    SortTestHelper::testSort("insertion sort", insertionSort, arr[j++], n);
+    SortTestHelper::testSort("bubble sort", bubbleSort, arr[j++], n);
+    SortTestHelper::testSort("bubble sort1", bubbleSortImprove1, arr[j++], n);
+    SortTestHelper::testSort("bubble sort2", bubbleSortImprove2, arr[j++], n);
+    
+    for(int k=0; k<i; k++){
+        delete[] arr[k];
+    }
 
     // delete arr;
     return 1;
