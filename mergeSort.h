@@ -81,4 +81,17 @@ template<typename T>
 void mergeSort1(T arr[], int n){
     __mergeSort(arr, 0, n-1);
 }
+
+
+template<typename T>
+void mergeSortBU(T arr[], int n){
+    for(int sz=1; sz<n; sz*=2){
+        for(int i=0; i+sz<n; i+=2*sz){
+            __merge(arr,i, i+sz-1, std::min(i+2*sz-1, n-1));            
+        }
+    }
+}
+
+
+
 #endif
