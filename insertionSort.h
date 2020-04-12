@@ -25,4 +25,16 @@ void insertionSort(T arr[], int n){
     }
 }
 
+template<typename T>
+void insertionSort(T arr[], int left, int right){
+    for(int i=left+1; i<=right; i++){
+        T e = arr[i];
+        int j;
+        for( j=i; (j>left)&&(arr[j-1]>e); j--){
+            arr[j] = arr[j-1];
+        }
+        arr[j] = e;
+    }
+}
+
 #endif
