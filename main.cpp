@@ -32,9 +32,9 @@ int main(int argc, char* argv[]){
     
     int *arr[7];
     int i=0;
-    // arr[i++] = SortTestHelper::generateRandomArray(n, 1, n);
+    arr[i++] = SortTestHelper::generateRandomArray(n, 1, 1000);
     cout << "sort begin: " << "\r\n";
-    arr[i++] = SortTestHelper::generateNearlyOrderedArray(n, 0);
+    // arr[i++] = SortTestHelper::generateNearlyOrderedArray(n, 0);
     arr[i++] = SortTestHelper::copyArray<int>(arr[0], n);
     arr[i++] = SortTestHelper::copyArray<int>(arr[0], n);
     arr[i++] = SortTestHelper::copyArray<int>(arr[0], n);
@@ -48,7 +48,9 @@ int main(int argc, char* argv[]){
     // cout << "begin    ";
     // SortTestHelper::printArray(arr[0], n);
     // SortTestHelper::testSort("quick sort", quickSort, arr[j++], n);
-    SortTestHelper::testSort("quick sort", quickSort1, arr[j++], n);
+    SortTestHelper::testSort("quick sort1", quickSort1, arr[j++], n);
+    SortTestHelper::testSort("quick sort2", quickSort2, arr[j++], n);
+    SortTestHelper::testSort("quick sort3", quickSort3, arr[j++], n);
     SortTestHelper::testSort("merge sort", mergeSort0, arr[j++], n);
     SortTestHelper::testSort("merge sort", mergeSort1, arr[j++], n);
     SortTestHelper::testSort("merge sort", mergeSortBU, arr[j++], n);
