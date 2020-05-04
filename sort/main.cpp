@@ -7,6 +7,7 @@
 #include "bubbleSort.h"
 #include "mergeSort.h"
 #include "quicksort.h"
+#include "heapSort.h"
 
 using std::cout;
 
@@ -21,7 +22,7 @@ int main(int argc, char* argv[]){
     }
     cout << "\r\n" ;
 
-    int n = 10000;
+    int n = 10;
     if(argc >= 2){
         std::string count(argv[1]);
         n = std::stoi(count);
@@ -30,11 +31,13 @@ int main(int argc, char* argv[]){
     printCompileTime();
     
     
-    int *arr[7];
+    int *arr[10];
     int i=0;
     arr[i++] = SortTestHelper::generateRandomArray(n, 1, 1000);
-    cout << "sort begin: " << "\r\n";
+    cout << "sort begin:   n: " << n << "\r\n";
     // arr[i++] = SortTestHelper::generateNearlyOrderedArray(n, 0);
+    arr[i++] = SortTestHelper::copyArray<int>(arr[0], n);
+    arr[i++] = SortTestHelper::copyArray<int>(arr[0], n);
     arr[i++] = SortTestHelper::copyArray<int>(arr[0], n);
     arr[i++] = SortTestHelper::copyArray<int>(arr[0], n);
     arr[i++] = SortTestHelper::copyArray<int>(arr[0], n);
@@ -48,6 +51,8 @@ int main(int argc, char* argv[]){
     // cout << "begin    ";
     // SortTestHelper::printArray(arr[0], n);
     // SortTestHelper::testSort("quick sort", quickSort, arr[j++], n);
+    SortTestHelper::testSort("heap sort1", heapSort1, arr[j++], n);
+    SortTestHelper::testSort("heap sort2", heapSort2, arr[j++], n);
     SortTestHelper::testSort("quick sort1", quickSort1, arr[j++], n);
     SortTestHelper::testSort("quick sort2", quickSort2, arr[j++], n);
     SortTestHelper::testSort("quick sort3", quickSort3, arr[j++], n);

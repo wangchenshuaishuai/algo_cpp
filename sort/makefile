@@ -6,7 +6,7 @@ LFLAGS = -Wall
 all: $(OBJS)
 	$(CC) $(LFLAGS) $(OBJS) -o out
 
-main.o: main.cpp SortTestingHelper.h SelectionSort.h insertionSort.h mergeSort.h
+main.o: main.cpp SortTestingHelper.h SelectionSort.h insertionSort.h mergeSort.h heapSort.h
 	$(CC) $(CFLAGS) main.cpp
 
 # SelectionSort.o: SelectionSort.cpp SelectionSort.h
