@@ -15,6 +15,15 @@ void printCompileTime(){
     cout << __DATE__ << " " << __TIME__ << "\r\n";
 }
 
+template<typename T>
+void testHeap3(T arr[], int n){
+    SortTestHelper::printArray(arr, n);
+    createHeap(arr, n);
+    SortTestHelper::printArray(arr, n);
+    heapSort3(arr, n);
+    SortTestHelper::printArray(arr, n);
+}
+
 int main(int argc, char* argv[]){
     cout << "====== main ======\r\n";
     for ( int i=0; i<argc; i++){
@@ -25,7 +34,7 @@ int main(int argc, char* argv[]){
     int n = 10;
     if(argc >= 2){
         std::string count(argv[1]);
-        n = std::stoi(count);
+        n = atoi(count.c_str());
     }
 
     printCompileTime();
@@ -44,15 +53,17 @@ int main(int argc, char* argv[]){
     arr[i++] = SortTestHelper::copyArray<int>(arr[0], n);
     arr[i++] = SortTestHelper::copyArray<int>(arr[0], n);
     arr[i++] = SortTestHelper::copyArray<int>(arr[0], n);
-
+    arr[i++] = SortTestHelper::copyArray<int>(arr[0], n);
 
     int j=0;
 
     // cout << "begin    ";
     // SortTestHelper::printArray(arr[0], n);
     // SortTestHelper::testSort("quick sort", quickSort, arr[j++], n);
+    // testHeap3(arr[j++], n);
     SortTestHelper::testSort("heap sort1", heapSort1, arr[j++], n);
     SortTestHelper::testSort("heap sort2", heapSort2, arr[j++], n);
+    SortTestHelper::testSort("heap sort3", heapSort3, arr[j++], n);
     SortTestHelper::testSort("quick sort1", quickSort1, arr[j++], n);
     SortTestHelper::testSort("quick sort2", quickSort2, arr[j++], n);
     SortTestHelper::testSort("quick sort3", quickSort3, arr[j++], n);
@@ -76,8 +87,7 @@ int main(int argc, char* argv[]){
     clock_t endTime = clock();
     cout << "vector sort: " << double(endTime-startTime)/CLOCKS_PER_SEC << " s" << endl;
 
-
-    
+   
     for(int k=0; k<i; k++){
         delete[] arr[k];
     }
