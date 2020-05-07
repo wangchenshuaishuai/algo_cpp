@@ -7,7 +7,7 @@ Objects = main.o
 all:$(Objects)
 	$(CC) $(LFLAG) $(Objects) -o out
 
-main.o: main.cpp heap.h
+main.o: main.cpp heap.h indexHeap.h
 	$(CC) $(CFLAG) main.cpp
 
 

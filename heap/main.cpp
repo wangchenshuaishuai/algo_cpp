@@ -1,5 +1,6 @@
 #include <iostream>
 #include "heap.h"
+#include "IndexHeap.h"
 using namespace std;
 int main(int argc, char *argv[]){
     std::cout << "========begin========" << std::endl;
