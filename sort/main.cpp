@@ -6,10 +6,13 @@
 #include "insertionSort.h"
 #include "bubbleSort.h"
 #include "mergeSort.h"
-#include "quicksort.h"
+#include "quickSort.h"
 #include "heapSort.h"
+#include "../search/binarySearch.h"
 
 using std::cout;
+
+#define COUNT_OF(arr) ((sizeof(arr)/sizeof(arr[0])))
 
 void printCompileTime(){
     cout << __DATE__ << " " << __TIME__ << "\r\n";
@@ -22,6 +25,17 @@ void testHeap3(T arr[], int n){
     SortTestHelper::printArray(arr, n);
     heapSort3(arr, n);
     SortTestHelper::printArray(arr, n);
+}
+
+void testBinarySearch(){
+    int buffer[] = {1,2,5,6,8,9,11,13,16,16,19,20,26,27,38,38,38, 40};
+    BinarySearch<int> objSearch;
+    cout << "binary search 0:" << objSearch.binarySearch(buffer, COUNT_OF(buffer), 5) << endl;
+    cout << "floor:" << objSearch.getFloor() << "  cell:" << objSearch.getCeil() << endl;
+
+    cout << "binary search 0:" << objSearch.binarySearchRec(buffer, COUNT_OF(buffer), 38) << endl;
+    cout << "floor:" << objSearch.getFloor() << "  cell:" << objSearch.getCeil() << endl;
+
 }
 
 int main(int argc, char* argv[]){
@@ -38,8 +52,9 @@ int main(int argc, char* argv[]){
     }
 
     printCompileTime();
-    
-    
+
+    testBinarySearch();
+
     int *arr[10];
     int i=0;
     arr[i++] = SortTestHelper::generateRandomArray(n, 1, 1000);
