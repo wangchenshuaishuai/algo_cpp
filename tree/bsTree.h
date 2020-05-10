@@ -2,7 +2,7 @@
 #define _BS_TREE_H
 #include <exception>
 #include<stdexcept>
-
+using namespace std;
 template<typename K, typename V>
 class BSTree{
 private:
@@ -30,7 +30,11 @@ public:
         root = nullptr;
         count = 0;
     };
-    ~BSTree(){};
+    ~BSTree(){
+        if(nullptr != root){
+            destory();            
+        }
+    };
 
     int size(){
         return count;
@@ -44,9 +48,19 @@ public:
     void insert_1(K key, V value);
     bool contain(K key);
     V get(K key);
+    void travelFront();
+    void travelFront(Node* node);
+
+    void travelMiddle();
+    void travelMiddle(Node* node);
+
+    void travelEnd();
+    void travelEnd(Node* node);
+
 private:
     V get(Node *node, K key);
     bool contain(Node *node, K key);
+    void destory(Node *node);
 
     Node* insert(Node *node, K key, V value){
         if(node == nullptr){
@@ -68,6 +82,19 @@ private:
     int count;
     Node *root;
 };
+
+template<typename K, typename V>
+void BSTree<K,V>::destory(Node *node){
+    if(node->left != nullptr){
+        destory(node);
+    }
+    if(node->right != nullptr){
+        destory(node);
+    }
+
+    delete node;
+    count--;
+}
 
 template<typename K, typename V>
 void BSTree<K,V>::insert(K key, V value){
@@ -148,6 +175,68 @@ V BSTree<K,V>::get(Node *node, K key){
     }else{
         return get(node->right, key);
     }
+}
+
+template<typename K, typename V>
+void BSTree<K,V>::travelFront(){
+    travelFront(root);
+}
+
+template<typename K, typename V>
+void BSTree<K,V>::travelFront(Node* node){
+    if(node == nullptr){
+        return;
+    }
+    cout << "key: " << node->key << "  value: " << node->value << endl;
+    if(node->left != nullptr){
+        travelFront(node->left);
+    }
+    
+    if(node->right != nullptr){
+        travelFront(node->right);
+    }
+}
+
+template<typename K, typename V>
+void BSTree<K,V>::travelMiddle(){
+    travelMiddle(root);
+}
+
+template<typename K, typename V>
+void BSTree<K,V>::travelMiddle(Node* node){
+    if(node == nullptr){
+        return;
+    }
+    if(node->left != nullptr){
+        travelMiddle(node->left);
+    }
+
+    cout << "key: " << node->key << "  value: " << node->value << endl;
+    
+    if(node->right != nullptr){
+        travelMiddle(node->right);
+    }
+}
+
+template<typename K, typename V>
+void BSTree<K,V>::travelEnd(){
+    travelEnd(root);
+}
+
+template<typename K, typename V>
+void BSTree<K,V>::travelEnd(Node* node){
+    if(node == nullptr){
+        return;
+    }
+    if(node->left != nullptr){
+        travelEnd(node->left);
+    }
+    
+    if(node->right != nullptr){
+        travelEnd(node->right);
+    }
+
+    cout << "key: " << node->key << "  value: " << node->value << endl;
 }
 
 #endif
