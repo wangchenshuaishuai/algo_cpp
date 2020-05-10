@@ -17,10 +17,10 @@ int main(int argc, char* argv[]){
     bsTree.insert(1, "phone");
     bsTree.insert(5, "telephone");
     bsTree.insert(7, "pen");
-    bsTree.insert(10, "byke");
-    bsTree.insert(109, "byke");
-    bsTree.insert(72, "byke");
-    bsTree.insert(39, "byke");
+    bsTree.insert(10, "bike");
+    bsTree.insert(109, "bike");
+    bsTree.insert(72, "bike");
+    bsTree.insert(39, "bike");
 
     cout << "contain 1?  " << bsTree.contain(3) << endl;
     cout << "contain 5?  " << bsTree.contain(5) << endl;
@@ -43,5 +43,8 @@ int main(int argc, char* argv[]){
     bsTree.travelMiddle();
     cout << "------end-----"<< endl;
     bsTree.travelEnd();
+
+    cout << "------ travel level ------" << endl;
+    bsTree.travelLevel();
     return 1;
 }

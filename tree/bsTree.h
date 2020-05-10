@@ -1,7 +1,8 @@
 #ifndef _BS_TREE_H
 #define _BS_TREE_H
 #include <exception>
-#include<stdexcept>
+#include <stdexcept>
+#include <queue>
 using namespace std;
 template<typename K, typename V>
 class BSTree{
@@ -32,7 +33,8 @@ public:
     };
     ~BSTree(){
         if(nullptr != root){
-            destory();            
+            cout << "destory" << endl;
+            destory(root);            
         }
     };
 
@@ -56,6 +58,8 @@ public:
 
     void travelEnd();
     void travelEnd(Node* node);
+
+    void travelLevel(); //广度优先遍历
 
 private:
     V get(Node *node, K key);
@@ -86,14 +90,15 @@ private:
 template<typename K, typename V>
 void BSTree<K,V>::destory(Node *node){
     if(node->left != nullptr){
-        destory(node);
+        destory(node->left);
     }
     if(node->right != nullptr){
-        destory(node);
+        destory(node->right);
     }
 
     delete node;
     count--;
+    // cout << "count:" << count << endl;
 }
 
 template<typename K, typename V>
@@ -237,6 +242,28 @@ void BSTree<K,V>::travelEnd(Node* node){
     }
 
     cout << "key: " << node->key << "  value: " << node->value << endl;
+}
+
+template<typename K, typename V>
+void BSTree<K,V>::travelLevel(){
+    queue<Node*> q;
+    if(root != nullptr){
+        q.push(root);
+    }
+
+    while(!q.empty()){
+        Node *node = q.front();
+        q.pop();
+        cout << "key:  " << node->key << "  value:  " << node->value << endl;
+        if(node->left != nullptr){
+            q.push(node->left);
+        }
+        if(node->right != nullptr){
+            q.push(node->right);
+        }
+    }
+
+    cout << "travelLevel over" << endl;
 }
 
 #endif
