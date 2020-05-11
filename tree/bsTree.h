@@ -50,16 +50,49 @@ public:
     void insert_1(K key, V value);
     bool contain(K key);
     V get(K key);
-    void travelFront();
+
+    void travelFront(); //前序遍历
     void travelFront(Node* node);
 
-    void travelMiddle();
+    void travelMiddle(); //中序遍历
     void travelMiddle(Node* node);
 
-    void travelEnd();
+    void travelEnd(); //后序遍历
     void travelEnd(Node* node);
 
     void travelLevel(); //广度优先遍历
+
+    K getMin();
+    K getMin(Node *node);
+    K getMax();
+    K getMax(Node *node);
+
+    void removeMin();
+    Node* removeMin(Node *node){
+        if(node->left == nullptr){
+            Node *nodeRight = node->right;
+            delete node;
+            count--;
+            return nodeRight;
+        }
+
+        node->left = removeMin(node->left);
+        return node;
+    }
+
+    void removeMax();
+    Node* removeMax(Node *node){
+        if(node->right == nullptr){
+            Node *nodeLeft = node->left;
+            delete node;
+            count--;
+            return nodeLeft;
+        }
+
+        node->right = removeMax(node->right);
+        return node;
+    }
+
 
 private:
     V get(Node *node, K key);
@@ -264,6 +297,54 @@ void BSTree<K,V>::travelLevel(){
     }
 
     cout << "travelLevel over" << endl;
+}
+
+template<typename K, typename V>
+K BSTree<K,V>::getMin(){
+    if(root!= nullptr){
+        return getMin(root);
+    }
+    return 0;
+}
+
+template<typename K, typename V>
+K BSTree<K,V>::getMin(Node *node){
+    if(node->left != nullptr){
+        return getMin(node->left);
+    }else{
+        return node->key;
+    }
+}
+
+template<typename K, typename V>
+K BSTree<K,V>::getMax(){
+    if(root!= nullptr){
+        return getMax(root);
+    }
+    return 0;
+}
+
+template<typename K, typename V>
+K BSTree<K,V>::getMax(Node *node){
+    if(node->right != nullptr){
+        return getMax(node->right);
+    }else{
+        return node->key;
+    }
+}
+
+template<typename K, typename V>
+void BSTree<K,V>::removeMin(){
+    if(root != nullptr){
+        root = removeMin(root);
+    }
+}
+
+template<typename K, typename V>
+void BSTree<K,V>::removeMax(){
+    if(root != nullptr){
+        root = removeMax(root);
+    }
 }
 
 #endif

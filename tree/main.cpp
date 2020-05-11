@@ -46,5 +46,19 @@ int main(int argc, char* argv[]){
 
     cout << "------ travel level ------" << endl;
     bsTree.travelLevel();
+
+    cout << "------ min & max ------" << endl;
+    cout << "min:  " << bsTree.getMin() << endl;
+    cout << "max:  " << bsTree.getMax() << endl;
+
+    cout << "------ remove min ------" << endl;
+    bsTree.removeMin();
+    bsTree.travelMiddle();
+
+    cout << "------ remove max ------" << endl;
+    bsTree.removeMax();
+    bsTree.travelMiddle();
+
+
     return 1;
 }
